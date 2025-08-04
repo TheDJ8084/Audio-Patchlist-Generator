@@ -1,1 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    /* Google Fonts voor consistentie */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 16px; /* Iets meer marge voor Google-look */
+      color: #202124; /* Donkergrijs voor tekst */
+      background-color: #f8f9fa; /* Lichtgrijze achtergrond */
+      font-size: 14px;
+    }
+    h1 {
+      font-size: 20px;
+      font-weight: 500; /* Medium gewicht voor koppen */
+      color: #202124;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    p {
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .section {
+      margin-bottom: 24px; /* Ruimere secties */
+      padding: 16px;
+      border: 1px solid #dadce0; /* Lichte rand */
+      border-radius: 8px; /* Afgeronde hoeken */
+      background-color: #ffffff; /* Witte achtergrond voor secties */
+      box-shadow: 0 1px 2px 0 rgba(60,64,67,0.08), 0 1px 3px 1px rgba(60,64,67,0.03); /* Lichte schaduw */
+    }
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      /* cursor: pointer; <--- Verwijderd, omdat klikken op label al werkt */
+      padding: 4px 0; /* Beetje padding voor klikgebied */
+    }
+    .toggle-container label {
+      margin-right: 12px;
+      font-weight: 500; /* Medium gewicht voor labels */
+      flex-grow: 1;
+      color: #3c4043; /* Iets donkerder label kleur */
+      cursor: pointer; /* Zorgt dat label klikbaar lijkt */
+    }
+    /* Standaard Google Docs checkbox styling */
+    input[type="checkbox"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #5f6368; /* Standaard grens */
+      border-radius: 2px;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+    input[type="checkbox"]:checked {
+      background-color: #1a73e8; /* Blauw bij aangevinkt */
+      border-color: #1a73e8;
+    }
+    input[type="checkbox"]:checked::before {
+      content: '\2713'; /* Vinkje symbool */
+      display: block;
+      color: white;
+      font-size: 14px;
+      line-height: 16px;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    input[type="checkbox"]:focus {
+      box-shadow: 0 0 0 3px rgba(26,115,232,0.3); /* Focus ring */
+      border-color: #1a73e8;
+    }
+
+    .row-input-group {
+      margin-left: 28px; /* Meer inspringen */
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      padding-bottom: 4px; /* Beetje ruimte onder de groep */
+    }
+    .row-input-group label {
+      margin-right: 8px;
+      width: 80px; /* Bredere label breedte voor betere uitlijning */
+      color: #5f6368; /* Lichtere label kleur */
+      font-weight: 400;
+    }
+    .row-input-group input[type="number"] {
+      width: 60px; /* Iets breder */
+      padding: 8px 12px; /* Meer padding */
+      border: 1px solid #dadce0;
+      border-radius: 4px; /* Afgeronde hoeken */
+      box-sizing: border-box; /* Zorgt dat padding binnen de breedte valt */
+      font-size: 14px;
+      color: #202124;
+    }
+    .row-input-group input[type="number"]:focus {
+      border-color: #1a73e8; /* Blauwe rand bij focus */
+      box-shadow: 0 0 0 1px #1a73e8;
+      outline: none;
+    }
+
+    .input-field {
+      margin-bottom: 24px; /* Ruimere sectie */
+      padding-bottom: 4px;
+    }
+    .input-field label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #3c4043;
+    }
+    .input-field input[type="text"] {
+      width: calc(100% - 24px); /* Aangepaste breedte voor padding */
+      padding: 8px 12px; /* Meer padding */
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+      color: #202124;
+    }
+    .input-field input[type="text"]:focus {
+      border-color: #1a73e8;
+      box-shadow: 0 0 0 1px #1a73e8;
+      outline: none;
+    }
+
+    .button-group {
+      margin-top: 32px; /* Meer ruimte boven knoppen */
+      text-align: right;
+    }
+    button {
+      padding: 10px 24px; /* Grotere knoppen */
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      min-width: 80px; /* Minimale breedte voor knoppen */
+      transition: background-color 0.2s, box-shadow 0.2s;
+    }
+    #okButton {
+      background-color: #1a73e8; /* Google blauw */
+      color: white;
+      margin-right: 8px;
+    }
+    #okButton:hover {
+      background-color: #176ad2; /* Donkerder blauw bij hover */
+      box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+    }
+    #okButton:focus {
+      box-shadow: 0 0 0 3px rgba(26,115,232,0.3); /* Focus ring */
+      outline: none;
+    }
+    #cancelButton {
+      background-color: #ffffff; /* Witte knop */
+      color: #3c4043; /* Donkere tekst */
+      border: 1px solid #dadce0; /* Lichte rand */
+    }
+    #cancelButton:hover {
+      background-color: #f8f9fa; /* Lichtgrijze achtergrond bij hover */
+      box-shadow: 0 1px 2px 0 rgba(60,64,67,0.08), 0 1px 3px 1px rgba(60,64,67,0.03);
+    }
+    #cancelButton:focus {
+      box-shadow: 0 0 0 3px rgba(26,115,232,0.3); /* Focus ring */
+      border-color: #1a73e8;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Patchlist Generator</h1>
+  <p>Select the devices you are going to use and the amount of inputs and outputs they have.</p>
+
+  <div class="input-field">
+    <label for="consoleName">Console name:</label>
+    <input type="text" id="consoleName" placeholder="A&H SQ5, M32 etc.">
+  </div>
+
+  <div class="section">
+    <div class="toggle-container">
+      <label for="consoletoggle">Console</label>
+      <input type="checkbox" id="consoletoggle" onchange="toggleInputs('Console')">
+    </div>
+    <div id="consoleinputs" style="display: none;">
+      <div class="row-input-group">
+        <label for="consoleinputrows">Amount of inputs:</label>
+        <input type="number" id="consoleinputrows" min="0" value="0">
+      </div>
+      <div class="row-input-group">
+        <label for="consoleoutputrows">Amount of outputs:</label>
+        <input type="number" id="consoleoutputrows" min="0" value="0">
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="toggle-container">
+      <label for="stageboxtoggle">Stagebox</label>
+      <input type="checkbox" id="stageboxtoggle" onchange="toggleInputs('StageBox')">
+    </div>
+    <div id="stageboxinputs" style="display: none;">
+      <div class="row-input-group">
+        <label for="stageboxinputrows">Amount of inputs:</label>
+        <input type="number" id="stageboxinputrows" min="0" value="0">
+      </div>
+      <div class="row-input-group">
+        <label for="stageboxoutputrows">Amount of outputs:</label>
+        <input type="number" id="stageboxoutputrows" min="0" value="0">
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="toggle-container">
+      <label for="auxtoggle">Aux</label>
+      <input type="checkbox" id="auxtoggle" onchange="toggleInputs('Aux')">
+    </div>
+    <div id="auxinputs" style="display: none;">
+      <div class="row-input-group">
+        <label for="auxinputrows">Amount of inputs:</label>
+        <input type="number" id="auxinputrows" min="0" value="0">
+      </div>
+      <div class="row-input-group">
+        <label for="auxoutputrows">Amount of outputs:</label>
+        <input type="number" id="auxoutputrows" min="0" value="0">
+      </div>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button id="okButton" onclick="google.script.run.withSuccessHandler(function() { google.script.host.close(); }).createTables(collectData())">OK</button>
+    <button id="cancelButton" onclick="google.script.host.close()">Annuleer</button>
+  </div>
+
+  <script>
+    function toggleInputs(type) {
+      var checkbox = document.getElementById(type.toLowerCase() + 'toggle');
+      var inputsDiv = document.getElementById(type.toLowerCase() + 'inputs');
+      if (checkbox.checked) {
+        inputsDiv.style.display = 'block';
+      } else {
+        inputsDiv.style.display = 'none';
+        // Reset waarden als de toggle wordt uitgezet
+        document.getElementById(type.toLowerCase() + 'inputrows').value = 0;
+        document.getElementById(type.toLowerCase() + 'outputrows').value = 0;
+      }
+    }
+
+    function collectData() {
+      var data = {
+        consoleName: document.getElementById('consoleName').value,
+        consoleToggle: document.getElementById('consoletoggle').checked,
+        consoleInputRows: document.getElementById('consoleinputrows').value,
+        consoleOutputRows: document.getElementById('consoleoutputrows').value,
+
+        stageBoxToggle: document.getElementById('stageboxtoggle').checked,
+        stageBoxInputRows: document.getElementById('stageboxinputrows').value,
+        stageBoxOutputRows: document.getElementById('stageboxoutputrows').value,
+
+        auxToggle: document.getElementById('auxtoggle').checked,
+        auxInputRows: document.getElementById('auxinputrows').value,
+        auxOutputRows: document.getElementById('auxoutputrows').value
+      };
+      return data;
+    }
+  </script>
+</body>
+</html>
