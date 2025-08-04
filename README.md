@@ -25,7 +25,7 @@ Since this is a Google Apps Script project, you will use it directly within your
 
 ### 2. Run the Add-on
 1.  Open any Google Docs document.
-2.  Go to **Extensions > Tabel Generator > Open Generator** to launch the sidebar.
+2.  Go to **Extensions > Patchlist Generator > Configure Patchlist** to launch the sidebar.
 
 ### 3. Generate Tables
 1.  In the sidebar, you can enter the **Console Name**.
