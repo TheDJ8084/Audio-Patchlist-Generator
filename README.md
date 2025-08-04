@@ -18,19 +18,14 @@ A Google Apps Script add-on to automatically generate clean and structured audio
 
 Since this is a Google Apps Script project, you will use it directly within your Google Docs environment.
 
-### 1. Copy the Script
-1.  Open a new Google Docs document.
-2.  Go to **Extensions > Apps Script**.
-3.  Delete any existing code and copy the content of the following files into your project:
-    -   **`Code.gs`**: The main script logic.
-    -   **`Sidebar.html`**: The code for the user interface of the sidebar.
-    
-### 2. Run the Script
-1.  Save the files in the Apps Script editor.
-2.  Return to your Google Docs document.
-3.  Refresh the page.
-4.  You will now see a new menu item called **Tabel Generator** appear under the **Extensions** menu.
-5.  Click on **Extensions > Tabel Generator > Open Generator** to open the sidebar.
+### 1. Install from the Google Workspace Marketplace
+1.  Go to the **Audio Patchlist Generator** page on the Google Workspace Marketplace.
+2.  Click the **Install** button and follow the on-screen prompts to grant the necessary permissions.
+3.  The add-on will now be available in all your Google Docs documents.
+
+### 2. Run the Add-on
+1.  Open any Google Docs document.
+2.  Go to **Extensions > Tabel Generator > Open Generator** to launch the sidebar.
 
 ### 3. Generate Tables
 1.  In the sidebar, you can enter the **Console Name**.
