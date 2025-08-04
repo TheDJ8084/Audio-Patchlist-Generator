@@ -1,6 +1,6 @@
 # Audio Patchlist Generator for Google Docs
 
-A Google Apps Script add-on to automatically generate clean and structured audio patchlists and input/output tables in Google Docs. This tool is perfect for sound engineers and event planners.
+A Google Docs add-on to automatically generate clean and structured audio patchlists and input/output tables in Google Docs. This tool is perfect for sound engineers and event planners.
 
 ---
 
